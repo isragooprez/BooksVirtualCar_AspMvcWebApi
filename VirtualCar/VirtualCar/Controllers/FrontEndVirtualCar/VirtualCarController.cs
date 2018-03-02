@@ -14,7 +14,7 @@ namespace VirtualCar.Controllers.FrontEndVirtualCar
     {
 
         private VirtualCarDBEntities db = new VirtualCarDBEntities();
-        
+
         //  [HttpPost]
         //public ActionResult AddCar(VirtualCarModels _virtualCar)
         //{
@@ -24,8 +24,8 @@ namespace VirtualCar.Controllers.FrontEndVirtualCar
         DateTime dateTimeNow = DateTime.Now;
         private static string currentUser = WindowsIdentity.GetCurrent().User.Value.ToString();
         string id_us = currentUser;
-        private int counterProd=0;
-        
+        private int counterProd = 0;
+
 
         Pedido pedido = new Pedido()
         {
@@ -44,21 +44,21 @@ namespace VirtualCar.Controllers.FrontEndVirtualCar
         {
             double _igv_generado = 0;
             ViewBag.Message = "No existen libro agregados.";
-            
+
             if (id > 0)
             {
                 var productoFind = db.Productoes.Find(id);
-                if (_virtualCar.Count>0)
+                if (_virtualCar.Count > 0)
                 {
                     var isExisteProdVirtualCar = (from p in _virtualCar where p.Id == id select p).Any();
-                    if (isExisteProdVirtualCar ==true)
+                    if (isExisteProdVirtualCar == true)
                     {
                         var prodVirtualCar = (from p in _virtualCar where p.Id == id select p).First();
 
                         foreach (Producto item in _virtualCar)
                         {
-                            if(prodVirtualCar.Id==item.Id)
-                            item.Stock++;
+                            if (prodVirtualCar.Id == item.Id)
+                                item.Stock++;
                         }
                     }
                     else
@@ -66,7 +66,7 @@ namespace VirtualCar.Controllers.FrontEndVirtualCar
                         productoFind.Stock = 1;
                         _virtualCar.Add(productoFind);
                         counterProd++;
-                    } 
+                    }
                 }
                 else
                 {
@@ -88,7 +88,7 @@ namespace VirtualCar.Controllers.FrontEndVirtualCar
 
 
                     //db.DetallePedidoes.Add(productoPedido);
-                    
+
                 }
                 ViewBag.Subtotal = pedido.Subtotal.ToString();
                 ViewBag.Total = pedido.Total.ToString();
@@ -115,34 +115,40 @@ namespace VirtualCar.Controllers.FrontEndVirtualCar
             return RedirectToAction("AddCar", _virtualCar);
 
         }
+        Cliente cli = new Cliente();
 
         public ActionResult GenerarPedido(VirtualCarModels _virtualCar)
         {
+            cli.Id = User.Identity.GetUserId();
+            Cliente resexistCli = db.Clientes.Where(c=>c.Id==cli.Id).First();
+
+            pedido.Cliente = resexistCli;
             pedido.id_cli = User.Identity.GetUserId();
             pedido.Fecha_ped = dateTimeNow;
-            Cliente cli = new Cliente();
-            cli.Id = User.Identity.GetUserId();
+           
+           
 
-            DetallePedido factura = new DetallePedido();
+            
             foreach (Producto item in _virtualCar)
             {
+                DetallePedido factura = new DetallePedido();
                 factura.id_ped = pedido.Id;
                 factura.id_pro = item.Id;
                 factura.Cantidad = item.Stock;
-                factura.Precio_venta = item.Precio *factura.Cantidad;
-                factura.Descuento = item.Precio - ((item.Precio * 5) / 100);
+                factura.Precio_venta = item.Precio * factura.Cantidad;
+                factura.Descuento = ((item.Precio * 5) / 100);
                 factura.Importe = item.Stock * item.Precio;
 
-                pedido.Subtotal += item.Precio;
+                pedido.Subtotal += item.Precio-factura.Descuento;
                 pedido.IGV += (pedido.Subtotal * 12) / 100;
                 pedido.Total += pedido.Subtotal + ((pedido.Subtotal * pedido.IGV) / 100);
-                pedido.Cliente = cli;
+                //pedido.Cliente = cli;
                 factura.Pedido = pedido;
-                
-                db.Pedidoes.Add(pedido);
+
+                //db.Pedidoes.Add(pedido);
                 db.DetallePedidoes.Add(factura);
             }
-           
+
             db.SaveChanges();
             return RedirectToAction("Index", "Pedidos");
         }
