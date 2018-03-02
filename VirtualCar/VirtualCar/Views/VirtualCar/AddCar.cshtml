@@ -1,0 +1,109 @@
+﻿@model IEnumerable<VirtualCar.Producto>
+
+@{
+    ViewBag.Title = "AddCar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AddCar</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table" border="1">
+    @{
+        if (Model.Count() >= 1)
+        {
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Foto)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Descripcion)
+                </th>
+                <th>
+                   Cantidad
+                </th>
+                <th>
+                    Categoria
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Precio)
+                </th>
+                <th></th>
+            </tr>
+
+            foreach (var item in Model)
+            {
+                if (item != null)
+                {
+                    <tr>
+                        <td>
+                            <img src="~/Content/images/@(item.Foto)" style="width:70px;height:100px;">
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Descripcion)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Stock)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Categoria.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Precio)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })|
+                        </td>
+                    </tr>
+                }
+            }
+
+
+
+            <tr>
+                <td colspan="5" align="left" style="text-align: end">
+                    Subtotal:
+                </td>
+                <td colspan="2" align="left" style="text-align: start">
+                    @ViewBag.Subtotal
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5" align="left" style="text-align: end">
+                    IGV (12%):
+                </td>
+                <td colspan="5" align="left" style="text-align: start">
+                    @ViewBag.IGV
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5" align="left" style="text-align: end">
+                    Total:@Html.DisplayNameFor(model => model.Precio)
+                </td>
+                <td colspan="2" align="left" style="text-align: start">
+                    @ViewBag.Total
+                </td>
+            </tr>
+        }
+        else
+        {
+            @ViewBag.Message
+        }
+    }
+
+</table>
+<p>
+    @Html.ActionLink("Back to List Books", "Index", "Productos") |
+    @Html.ActionLink("Generar Pedido", "GenerarPedido")
+</p>
