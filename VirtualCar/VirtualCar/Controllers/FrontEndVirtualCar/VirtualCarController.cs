@@ -115,20 +115,15 @@ namespace VirtualCar.Controllers.FrontEndVirtualCar
             return RedirectToAction("AddCar", _virtualCar);
 
         }
-        Cliente cli = new Cliente();
+
 
         public ActionResult GenerarPedido(VirtualCarModels _virtualCar)
         {
-            cli.Id = User.Identity.GetUserId();
-            Cliente resexistCli = db.Clientes.Where(c=>c.Id==cli.Id).First();
-
-            pedido.Cliente = resexistCli;
+            var _clienteOnlineId = User.Identity.GetUserId();
+            Cliente existCliente = db.Clientes.Where(c => c.Id == _clienteOnlineId).First();
+            pedido.Cliente = existCliente;
             pedido.id_cli = User.Identity.GetUserId();
             pedido.Fecha_ped = dateTimeNow;
-           
-           
-
-            
             foreach (Producto item in _virtualCar)
             {
                 DetallePedido factura = new DetallePedido();
@@ -139,7 +134,7 @@ namespace VirtualCar.Controllers.FrontEndVirtualCar
                 factura.Descuento = ((item.Precio * 5) / 100);
                 factura.Importe = item.Stock * item.Precio;
 
-                pedido.Subtotal += item.Precio-factura.Descuento;
+                pedido.Subtotal += item.Precio - factura.Descuento;
                 pedido.IGV += (pedido.Subtotal * 12) / 100;
                 pedido.Total += pedido.Subtotal + ((pedido.Subtotal * pedido.IGV) / 100);
                 //pedido.Cliente = cli;
