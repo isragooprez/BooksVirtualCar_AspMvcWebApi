@@ -10,6 +10,7 @@ using VirtualCar;
 
 namespace VirtualCar.Controllers.FrontEndVirtualCar
 {
+    [Authorize]
     public class PedidosController : Controller
     {
         private VirtualCarDBEntities db = new VirtualCarDBEntities();
@@ -35,7 +36,7 @@ namespace VirtualCar.Controllers.FrontEndVirtualCar
             }
             return View(pedido);
         }
-
+        [Authorize(Users = "isragoo.prez@gmail.com")]
         // GET: Pedidos/Create
         public ActionResult Create()
         {
@@ -46,6 +47,7 @@ namespace VirtualCar.Controllers.FrontEndVirtualCar
         // POST: Pedidos/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Users = "isragoo.prez@gmail.com")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,id_cli,Fecha_ped,Subtotal,Total,IGV")] Pedido pedido)
@@ -60,7 +62,7 @@ namespace VirtualCar.Controllers.FrontEndVirtualCar
             ViewBag.id_cli = new SelectList(db.Clientes, "Id", "Nombres", pedido.id_cli);
             return View(pedido);
         }
-
+        [Authorize(Users = "isragoo.prez@gmail.com")]
         // GET: Pedidos/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -81,6 +83,7 @@ namespace VirtualCar.Controllers.FrontEndVirtualCar
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Users = "isragoo.prez@gmail.com")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,id_cli,Fecha_ped,Subtotal,Total,IGV")] Pedido pedido)
         {
@@ -93,7 +96,7 @@ namespace VirtualCar.Controllers.FrontEndVirtualCar
             ViewBag.id_cli = new SelectList(db.Clientes, "Id", "Nombres", pedido.id_cli);
             return View(pedido);
         }
-
+        [Authorize(Users = "isragoo.prez@gmail.com")]
         // GET: Pedidos/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -112,6 +115,7 @@ namespace VirtualCar.Controllers.FrontEndVirtualCar
         // POST: Pedidos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Users = "isragoo.prez@gmail.com")]
         public ActionResult DeleteConfirmed(int id)
         {
             Pedido pedido = db.Pedidoes.Find(id);

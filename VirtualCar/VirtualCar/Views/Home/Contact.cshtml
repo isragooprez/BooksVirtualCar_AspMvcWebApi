@@ -2,17 +2,120 @@
     ViewBag.Title = "Contact";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+@{
+    ViewBag.Title = "About";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<h2>About</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Simple HttpErrorPages | MIT License | https://github.com/AndiDittrich/HttpErrorPages -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>We've got some trouble | 400 - Bad Request</title>
+</head>
+<body>
+    <h2>@ViewBag.Title.</h2>
+    <h3>@ViewBag.Message</h3>
+    <mat-card class="card">
+        <mat-card-content class="card-container">
+            <div class="cover">
+                <mat-toolbar color="primary">
+                    <mat-card-header>
+                        <mat-card-title>BOOKS PREZ ZOLUTION Contactanos a nosotros</mat-card-title>
+                    </mat-card-header>
+                </mat-toolbar>
+                <p>
+                    A través de este formulario, llamando al 902 101 400 o envíando un email a
+                    isragoo.prez@gmail.com
+                </p>
+
+                <mat-card class="card">
+                    <mat-toolbar color="accent">
+                        <mat-card-header>
+                            <mat-card-title>
+                                <mat-card-subtitle>  <mat-icon>assignment</mat-icon>FORMULARIO</mat-card-subtitle>
+
+                            </mat-card-title>
+
+                        </mat-card-header>
+                    </mat-toolbar>
+                    <mat-card-content class="card-container">
+                        <!--Input-->
+                        <mat-form-field>
+                            <input matinput type="text" placeholder="Name" [(ngmodel)]="name" required />
+                            <mat-error>Field required</mat-error>
+                            <button mat-button *ngif="name" matsuffix mat-icon-button aria-label="Clear" (click)="name=''">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </mat-form-field>
+                        <!--Text area-->
+                        <mat-form-field hintlabel="Max 100 characters">
+                            <textarea matinput placeholder="Description" [(ngmodel)]="description" maxlength="100"></textarea>
+                        </mat-form-field>
+                        <!--Date picker-->
+                        <mat-form-field>
+                            <input matinput [matdatepicker]="picker" placeholder="Choose a date" [(ngmodel)]="date">
+                            <mat-datepicker-toggle matsuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                        <!--Select-->
+                        <mat-form-field>
+                            <mat-select placeholder="Select" [(value)]="selected" [formcontrol]="animalControl" required>
+                                <mat-option>--</mat-option>
+                                <mat-option *ngfor="let option of options" [value]="option.value"> {{ option.viewValue }}</mat-option>
+                            </mat-select>
+                            <mat-error *ngif="animalControl.hasError('required')">Please choose an animal</mat-error>
+                        </mat-form-field>
+                        <!--slider-->
+                        <mat-slider [(ngmodel)]="value"></mat-slider>
+                        <!--Accordion-->
+                        <mat-accordion>
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        Personal data
+                                    </mat-panel-title>
+                                    <mat-panel-description>
+                                        Type your name and age
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+
+                                <mat-form-field>
+                                    <input matinput placeholder="First name" [(ngmodel)]="fistName">
+                                </mat-form-field>
+
+                                <mat-form-field>
+                                    <input matinput placeholder="Age" [(ngmodel)]="age">
+                                </mat-form-field>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                        <br>
+                        <!--checkbox-->
+                        <mat-checkbox [(ngmodel)]="check">Check me!</mat-checkbox>
+
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <address>
+        One Microsoft Way<br />
+        Redmond, WA 98052-6399<br />
+        <abbr title="Phone">P:</abbr>
+        425.555.0100
+    </address>
+
+    <address>
+        <strong>Support:</strong>   <a href="isragoo.prez@gmail.com">Support@example.com</a><br />
+        <strong>Marketing:</strong> <a href="isragoo.prez@hotmail.com">Marketing@example.com</a>
+    </address>
+</body>
+</html>
+

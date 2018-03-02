@@ -1,14 +1,58 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "About";
     Layout = "~/Views/Shared/_Layout.cshtml";
-  
+
 }
 
 
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
 
-<h2>About</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Simple HttpErrorPages | MIT License | https://github.com/AndiDittrich/HttpErrorPages -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>We've got some trouble | 400 - Bad Request</title>
 
+</head>
+<body>
+    <div fxlayout="row" fxlayoutwrap fxfill fxlayoutalign="start start" fxlayoutgap="10px">
+        <mat-card class="card">
+            <mat-card-content class="card-container">
+                <div class="cover">
+                    <mat-toolbar color="primary">
+                        <mat-card-header>
+                            <mat-card-title> BOOKS PREZ ZOLUTION Acerca de</mat-card-title>
+                        </mat-card-header>
+                    </mat-toolbar>
+                    <h3>Bueno, pero... ¿Que es PREZ ZOLUTION?</h3>
+                    <p>
+                        PREZ ZOLUTION es el nombre que hemos elegido para ofrecerte Software como Servicio o SaaS (Software as a Service)
+                        100% a medida del cliente. Esto quiere decir que no adaptamos o personalizamos un software ya existente, sino que
+                        desarrollamos en exclusiva para ti el software que tu empresa necesita, desde cero, analizando cada punto de tu
+                        negocio para que el software se adapte a ti y no al revés.
+                    </p>
+                    <h3>Muy bien, pongámonos un poco más técnicos…</h3>
+                    <p>
+                        PREZ ZOLUTION (tu Software) funcionara alojado en la "nube" de Microsoft, con copias de seguridad diarias y con una
+                        capacidad de almacenamiento en base de datos y tráfico ilimitados, es decir: No tendrás que realizar inversión
+                        alguna en infraestructura (servidores, licencias, dispositivos de copias de seguridad, etc…) únicamente tendrás que
+                        disponer de un ordenador, tablet, etc.. con conexión a internet para poder utilizarlo, y... ya está! ¿Sencillo,
+                        verdad?
+                    </p>
+                    <h3>¿Y el soporte, mantenimiento y demás?</h3>
+                    <p>
+                        Este es el apartado que realmente marca la diferencia.
+                        Como usuario de PREZ ZOLUTION, tendrás un consultor asignado a tu proyecto en todo momento, disponible tanto
+                        telefónica como presencialmente en tus oficinas siempre que lo requieras, y por supuesto sin coste alguno para ti.
+                        ¡No te cortes!. Mes tras mes podrás solicitarnos tantas modificaciones, mejoras e ideas como consideres necesarias
+                        sobre el software, PREZ ZOLUTION se adapta a tu negocio en todo momento y sin ningún tipo de limitación.
+                    </p>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</body>
+</html>

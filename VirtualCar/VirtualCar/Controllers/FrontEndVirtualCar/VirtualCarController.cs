@@ -130,17 +130,21 @@ namespace VirtualCar.Controllers.FrontEndVirtualCar
                 factura.id_ped = pedido.Id;
                 factura.id_pro = item.Id;
                 factura.Cantidad = item.Stock;
-                factura.Precio_venta = item.Precio * factura.Cantidad;
                 factura.Descuento = ((item.Precio * 5) / 100);
+                factura.Precio_venta = item.Precio * factura.Cantidad-factura.Descuento;
                 factura.Importe = item.Stock * item.Precio;
-
                 pedido.Subtotal += item.Precio - factura.Descuento;
                 pedido.IGV += (pedido.Subtotal * 12) / 100;
-                pedido.Total += pedido.Subtotal + ((pedido.Subtotal * pedido.IGV) / 100);
-                //pedido.Cliente = cli;
+                pedido.Total += pedido.Subtotal+pedido.IGV;
                 factura.Pedido = pedido;
 
-                //db.Pedidoes.Add(pedido);
+                //Metod o Alctulizacion Parcial
+                var bookProdEdit = (from p in db.Productoes where p.Id == item.Id select p).First();
+                bookProdEdit.Stock = bookProdEdit.Stock - 1;
+                db.Productoes.Attach(bookProdEdit);
+                db.Entry(bookProdEdit).Property(bp=>bp.Stock).IsModified=true;
+                db.SaveChanges();
+
                 db.DetallePedidoes.Add(factura);
             }
 

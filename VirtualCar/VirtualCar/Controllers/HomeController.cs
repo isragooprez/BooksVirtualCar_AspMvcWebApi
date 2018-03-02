@@ -10,9 +10,11 @@ using VirtualCar;
 
 namespace VirtualCar.Controllers
 {
+    //Permiso para todo el contralador 
+    [Authorize]
     public class HomeController : Controller
     {
-     
+
 
         private VirtualCarDBEntities db = new VirtualCarDBEntities();
 
@@ -132,14 +134,14 @@ namespace VirtualCar.Controllers
             }
             base.Dispose(disposing);
         }
-
+        [AllowAnonymous]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
 
             return View();
         }
-
+        [AllowAnonymous]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

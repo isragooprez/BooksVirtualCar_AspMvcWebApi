@@ -21,12 +21,17 @@ namespace VirtualCar
         }
     
         public int Id { get; set; }
+        public Nullable<int> id_cat { get; set; }
         public string Nombre { get; set; }
+        public string Autor { get; set; }
+        public string Editorial { get; set; }
+        public string Edicion { get; set; }
+        public Nullable<System.DateTime> Publicacion { get; set; }
+        public Nullable<System.DateTime> Adquisicion { get; set; }
         public string Descripcion { get; set; }
         public Nullable<double> Precio { get; set; }
         public Nullable<int> Stock { get; set; }
         public string Foto { get; set; }
-        public Nullable<int> id_cat { get; set; }
     
         public virtual Categoria Categoria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

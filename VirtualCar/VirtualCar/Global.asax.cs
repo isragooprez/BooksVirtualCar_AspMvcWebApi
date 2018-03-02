@@ -18,11 +18,11 @@ namespace VirtualCar
         {
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-            //ModelBinders para  el vitrtual car
+            //Using necesario para el routin del api 
+            GlobalConfiguration.Configure(WebApiConfig.Register);
+            //ModelBinders para  el vitrtualCar en Session 
             ModelBinders.Binders.Add(typeof(VirtualCarModels), new VirtualCarModelBinder());
             //Archivos JSon
             GlobalConfiguration.Configuration.Formatters.Clear();

@@ -55,12 +55,17 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_cat" Type="int" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Autor" Type="varchar" MaxLength="50" />
+          <Property Name="Editorial" Type="varchar" MaxLength="50" />
+          <Property Name="Edicion" Type="varchar" MaxLength="50" />
+          <Property Name="Publicacion" Type="datetime" />
+          <Property Name="Adquisicion" Type="datetime" />
           <Property Name="Descripcion" Type="varchar" MaxLength="50" />
           <Property Name="Precio" Type="float" />
           <Property Name="Stock" Type="int" />
           <Property Name="Foto" Type="varchar" MaxLength="50" />
-          <Property Name="id_cat" Type="int" />
         </EntityType>
         <Association Name="FK_DetallePedido_Pedido">
           <End Role="Pedidoes" Type="Self.Pedidoes" Multiplicity="0..1" />
@@ -216,12 +221,17 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_cat" Type="Int32" />
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Autor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Editorial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Edicion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Publicacion" Type="DateTime" Precision="3" />
+          <Property Name="Adquisicion" Type="DateTime" Precision="3" />
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Precio" Type="Double" />
           <Property Name="Stock" Type="Int32" />
           <Property Name="Foto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="id_cat" Type="Int32" />
           <NavigationProperty Name="Categoria" Relationship="VirtualCarDBModel.FK_Producto_Categoria" FromRole="Producto" ToRole="Categoria" />
           <NavigationProperty Name="DetallePedidoes" Relationship="VirtualCarDBModel.FK_DetallePedido_Producto" FromRole="Producto" ToRole="DetallePedido" />
         </EntityType>
@@ -331,12 +341,17 @@
           <EntitySetMapping Name="Productoes">
             <EntityTypeMapping TypeName="VirtualCarDBModel.Producto">
               <MappingFragment StoreEntitySet="Productoes">
-                <ScalarProperty Name="id_cat" ColumnName="id_cat" />
                 <ScalarProperty Name="Foto" ColumnName="Foto" />
                 <ScalarProperty Name="Stock" ColumnName="Stock" />
                 <ScalarProperty Name="Precio" ColumnName="Precio" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Adquisicion" ColumnName="Adquisicion" />
+                <ScalarProperty Name="Publicacion" ColumnName="Publicacion" />
+                <ScalarProperty Name="Edicion" ColumnName="Edicion" />
+                <ScalarProperty Name="Editorial" ColumnName="Editorial" />
+                <ScalarProperty Name="Autor" ColumnName="Autor" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="id_cat" ColumnName="id_cat" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

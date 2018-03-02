@@ -4,11 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="15f922f94f8145508b437ab2ce42395c" Name="Diagram1" ZoomLevel="116">
-        <EntityTypeShape EntityType="VirtualCarDBModel.Categoria" Width="1.5" PointX="0.75" PointY="1.5" />
-        <EntityTypeShape EntityType="VirtualCarDBModel.Cliente" Width="1.5" PointX="0.75" PointY="4.875" />
-        <EntityTypeShape EntityType="VirtualCarDBModel.DetallePedido" Width="1.5" PointX="5.25" PointY="1" />
-        <EntityTypeShape EntityType="VirtualCarDBModel.Pedido" Width="1.5" PointX="3" PointY="5" />
+      <Diagram DiagramId="15f922f94f8145508b437ab2ce42395c" Name="Diagram1" ZoomLevel="40">
+        <EntityTypeShape EntityType="VirtualCarDBModel.Categoria" Width="1.5" PointX="0.75" PointY="2" />
+        <EntityTypeShape EntityType="VirtualCarDBModel.Cliente" Width="1.5" PointX="0.75" PointY="6.375" />
+        <EntityTypeShape EntityType="VirtualCarDBModel.DetallePedido" Width="1.5" PointX="5.25" PointY="1.5" />
+        <EntityTypeShape EntityType="VirtualCarDBModel.Pedido" Width="1.5" PointX="3" PointY="6.625" />
         <EntityTypeShape EntityType="VirtualCarDBModel.Producto" Width="1.5" PointX="3" PointY="1" />
         <AssociationConnector Association="VirtualCarDBModel.FK_Producto_Categoria" />
         <AssociationConnector Association="VirtualCarDBModel.FK_Pedido_Cliente" />
