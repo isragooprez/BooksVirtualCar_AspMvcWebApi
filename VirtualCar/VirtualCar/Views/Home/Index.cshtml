@@ -50,7 +50,7 @@
                         <td>
                             @if (item.Stock == 0)
                             {
-                                <img src="~/Content/images/book (12).jpg" style="width:200px;height:50px;">
+                                <img src="~/Content/images/agotados.png" style="width:200px;height:50px;">
                             }
                         </td>
                         <td>
@@ -91,7 +91,7 @@
 
                                     </span>
                                 </div>
-                                @if (item.Stock == 0)
+                                @if (item.Stock != 0)
                                 {
                                     <div class="item_add"><span class="item_price">@Html.ActionLink("Add Car", "AddCar", "VirtualCar", new { id = item.Id }, new { @class = "btn btn-primary" })</span></div>
                                 }

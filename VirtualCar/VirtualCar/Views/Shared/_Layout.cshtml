@@ -563,13 +563,25 @@
                         </li>
                         <li class="site-menu-item has-sub active open">
                            
+                            @if (User.Identity.Name == "isragoo.prez@gmail.com")
+                            {
+                                <a href="javascript:void(0)" data-slug="dashboard">
+                                    <i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
+                                    <span class="site-menu-title">Virtual Books Car</span>
+                                    <div class="site-menu-badge">
+                                        <span class="badge badge-success">2</span>
+                                    </div>
+                                </a>
+                            }
+                            else { 
                             <a href="javascript:void(0)" data-slug="dashboard">
                                 <i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
-                                <span class="site-menu-title">Virtual Books Car</span>
+                                <span class="site-menu-title">CPANEL</span>
                                 <div class="site-menu-badge">
                                     <span class="badge badge-success">2</span>
                                 </div>
                             </a>
+                            }
 
                             <a href="javascript:void(0)" data-slug="dashboard">
                                 <i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
