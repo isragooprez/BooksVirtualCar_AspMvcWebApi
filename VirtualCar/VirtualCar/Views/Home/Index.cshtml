@@ -1,65 +1,114 @@
 ﻿@model IEnumerable<VirtualCar.Producto>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "TIENDA";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create",null, new { @class = "btn btn-warning" })
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-warning" })
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Precio)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Stock)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Foto)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Categoria.Nombre)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Precio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Stock)
-        </td>
-        <td>
-            <img src="~/Content/images/@(item.Foto)"  style="width:200px;height:200px;">
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Categoria.Nombre)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" }) |
-            @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-info" }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })|
-            @Html.ActionLink("Add Car", "AddCar", "VirtualCar", new { id = item.Id }, new { @class = "btn btn-success" })
-        </td>
-    </tr>
-}
 
-</table>
+
+<div class="w_content">
+    <div class="women">
+        <a href="#"><h4>Enthecwear - <span>4449 items</span> </h4></a>
+        <ul class="w_nav">
+            <li>Sort : </li>
+            <li><a class="active" href="#">popular</a></li> |
+            <li><a href="#">new </a></li> |
+            <li><a href="#">discount</a></li> |
+            <li><a href="#">price: Low High </a></li>
+            <div class="clear"></div>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+
+
+    @foreach (var item in Model)
+    {
+        <div class="grid1_of_4">
+            @for (int i = 0; i < 1; i++)
+            {
+
+
+
+
+                <div class="content_box">
+
+                    <a href="details.html">
+                        <img src="~/Content/images/@(item.Foto)" style="width:200px;height:250px;">
+                        
+                    </a>
+                   
+
+                    <h4><a href="details.html"> @Html.DisplayFor(modelItem => item.Nombre)Duis autem</a></h4>
+                    <tr>
+                        <td>
+                            @if (item.Stock == 0)
+                            {
+                                <img src="~/Content/images/book (12).jpg" style="width:200px;height:50px;">
+                            }
+                        </td>
+                        <td>
+                            <p><h4>Autor</h4> @Html.DisplayFor(modelItem => item.Autor)</p>
+                        </td>
+                        <td>
+                            Descripcion <p>@Html.DisplayFor(modelItem => item.Descripcion)</p>
+                        </td>
+                        <td>
+                            Publicacion <p>@Html.DisplayFor(modelItem => item.Publicacion)</p>
+                        </td>
+                        <td>
+                            Edicion<p>@Html.DisplayFor(modelItem => item.Edicion)</p>
+                        </td>
+                        <td>
+                            Editorial <p>@Html.DisplayFor(modelItem => item.Editorial)</p>
+                        </td>
+                        <td>
+                            Categoria<p>@Html.DisplayFor(modelItem => item.Categoria.Nombre)</p>
+                        </td>
+                        <td>
+                            Stock<p>@Html.DisplayFor(modelItem => item.Stock)</p>
+                        </td>
+                        <td>
+                            Precio<p>@Html.DisplayFor(modelItem => item.Precio)</p>
+                        </td>
+                        <td>
+                            <div class="grid_1 simpleCart_shelfItem">
+                                <div class="item_add">
+                                    <span class="item_price">
+                                        @if (User.Identity.Name == "isragoo.prez@gmail.com")
+                                        {
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-success" })
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-success" })
+
+                                        }
+                                        @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-success" })
+
+                                    </span>
+                                </div>
+                                @if (item.Stock == 0)
+                                {
+                                    <div class="item_add"><span class="item_price">@Html.ActionLink("Add Car", "AddCar", "VirtualCar", new { id = item.Id }, new { @class = "btn btn-primary" })</span></div>
+                                }
+                            </div>
+                        </td>
+                    </tr>
+                </div>
+            }
+        </div>
+    }
+    <div class="clear"></div>
+
+
+
+
+
+
+
+
+</div>

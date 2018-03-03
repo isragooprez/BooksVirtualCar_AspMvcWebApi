@@ -16,6 +16,7 @@ namespace VirtualCar.Controllers.FrontEndVirtualCar
         private VirtualCarDBEntities db = new VirtualCarDBEntities();
 
         // GET: Pedidos
+         [Authorize(Users = "isragoo.prez@gmail.com")]
         public ActionResult Index()
         {
             var pedidoes = db.Pedidoes.Include(p => p.Cliente);
@@ -23,6 +24,7 @@ namespace VirtualCar.Controllers.FrontEndVirtualCar
         }
 
         // GET: Pedidos/Details/5
+         [Authorize(Users = "isragoo.prez@gmail.com")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -62,7 +64,7 @@ namespace VirtualCar.Controllers.FrontEndVirtualCar
             ViewBag.id_cli = new SelectList(db.Clientes, "Id", "Nombres", pedido.id_cli);
             return View(pedido);
         }
-        [Authorize(Users = "isragoo.prez@gmail.com")]
+         [Authorize(Users = "isragoo.prez@gmail.com")]
         // GET: Pedidos/Edit/5
         public ActionResult Edit(int? id)
         {

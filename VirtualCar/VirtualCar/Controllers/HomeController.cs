@@ -41,8 +41,8 @@ namespace VirtualCar.Controllers
             }
             return View(producto);
         }
-
         // GET: Productos/Create
+        [Authorize(Users = "isragoo.prez@gmail.com")]
         public ActionResult Create()
         {
             ViewBag.id_cat = new SelectList(db.Categorias, "Id", "Nombre");
@@ -54,6 +54,7 @@ namespace VirtualCar.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Users = "isragoo.prez@gmail.com")]
         public ActionResult Create([Bind(Include = "Id,Nombre,Descripcion,Precio,Stock,Foto,id_cat")] Producto producto)
         {
             if (ModelState.IsValid)
@@ -68,6 +69,7 @@ namespace VirtualCar.Controllers
         }
 
         // GET: Productos/Edit/5
+        [Authorize(Users = "isragoo.prez@gmail.com")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -88,6 +90,7 @@ namespace VirtualCar.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Users = "isragoo.prez@gmail.com")]
         public ActionResult Edit([Bind(Include = "Id,Nombre,Descripcion,Precio,Stock,Foto,id_cat")] Producto producto)
         {
             if (ModelState.IsValid)
@@ -101,6 +104,7 @@ namespace VirtualCar.Controllers
         }
 
         // GET: Productos/Delete/5
+        [Authorize(Users = "isragoo.prez@gmail.com")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -116,6 +120,7 @@ namespace VirtualCar.Controllers
         }
 
         // POST: Productos/Delete/5
+        [Authorize(Users = "isragoo.prez@gmail.com")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

@@ -2380,6 +2380,7 @@
     <Content Include="html\widgets\social.html" />
     <Content Include="html\widgets\statistics.html" />
     <Content Include="html\widgets\weather.html" />
+    <Content Include="images\agotados.jpg" />
     <Content Include="images\book %281%29.jpg" />
     <Content Include="images\book %2810%29.jpg" />
     <Content Include="images\book %2811%29.jpg" />
@@ -2478,6 +2479,9 @@
     <Content Include="images\book %2896%29.jpg" />
     <Content Include="images\book %2897%29.jpg" />
     <Content Include="images\book %2898%29.jpg" />
+    <Content Include="images\descarga.png" />
+    <Content Include="jsGreton\scripts.js" />
+    <Content Include="jsGreton\style.css" />
     <Content Include="src\js\angular\app.js" />
     <Content Include="src\js\angular\router.js" />
     <Content Include="src\js\angular\ui\module-bootstrap.js" />
