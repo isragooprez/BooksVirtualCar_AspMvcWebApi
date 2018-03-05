@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using VirtualCar;
+using VirtualCar.Models;
 
 namespace VirtualCar.Controllers
 {
@@ -19,8 +20,10 @@ namespace VirtualCar.Controllers
         private VirtualCarDBEntities db = new VirtualCarDBEntities();
 
         // GET: Productos
-        public ActionResult Index()
+        public ActionResult Index(VirtualCarModels _virtualCar)
         {
+
+            CalculoPrecio(_virtualCar);
             var productoes = db.Productoes.Include(p => p.Categoria);
             return View(productoes.ToList());
         }
@@ -153,5 +156,35 @@ namespace VirtualCar.Controllers
 
             return View();
         }
+
+        Pedido pedido = new Pedido()
+        {
+           
+            Fecha_ped = System.DateTime.Now,
+            IGV = 12,
+            Subtotal = 0,
+            Total = 0
+        };
+
+        public void CalculoPrecio(VirtualCarModels _virtualCar)
+        {
+            double _igv_generado = 0;
+            foreach (var item in _virtualCar)
+            {
+                //falta el producnto tenga el campo iva
+                if (item != null)
+                {
+                    pedido.Subtotal += item.Precio;
+                    _igv_generado = (double)(pedido.Subtotal * pedido.IGV) / 100;
+                    pedido.Total += pedido.Subtotal + ((pedido.Subtotal * pedido.IGV) / 100);
+                }
+            }
+            ViewBag.Subtotal = pedido.Subtotal.ToString();
+            ViewBag.Total = pedido.Total.ToString();
+            ViewBag.IGV = _igv_generado;
+            ViewBag.CantBooks = _virtualCar.Count();
+        }
+
+
     }
 }

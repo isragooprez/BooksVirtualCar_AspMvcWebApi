@@ -17,7 +17,7 @@ namespace VirtualCar.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        private VirtualCarDBEntities db = new VirtualCarDBEntities();
         public AccountController()
         {
         }
@@ -149,8 +149,15 @@ namespace VirtualCar.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+
             if (ModelState.IsValid)
             {
+               
+
+
+
+
+
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -162,10 +169,26 @@ namespace VirtualCar.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirmar cuenta", "Para confirmar la cuenta, haga clic <a href=\"" + callbackUrl + "\">aquí</a>");
+                    AddErrors(result);
+                    var userInser=UserManager.FindByEmail(model.Email);
+                    Cliente newCliente = new Cliente();
+                    newCliente.Id = userInser.Id;
+                    newCliente.Nombres = model.Nombres;
+                    newCliente.Apellidos = model.Apellidos;
+                    newCliente.Telefono = model.Telefono;
+                    newCliente.DNI = model.DNI;
+                    newCliente.Email = model.Email;
+                    newCliente.Clave = model.Password;
+                    newCliente.Esuario = model.Email;
+                    newCliente.Direccion = model.Direccion;
+                    db.Clientes.Add(newCliente);
+                    db.SaveChanges();
 
                     return RedirectToAction("Index", "Home");
                 }
-                AddErrors(result);
+                
+                
+
             }
 
             // Si llegamos a este punto, es que se ha producido un error y volvemos a mostrar el formulario

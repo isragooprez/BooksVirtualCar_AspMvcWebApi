@@ -20,5 +20,11 @@ namespace VirtualCar.Controllers.FrontEndVirtualCar
         //var respersonasLambda2 = (personas.Where(p => { return p.edad == 15; })).Select(q => { return new { q.nombre }; });
         //@{ var company = (CompanyInfo)ViewData.Model; }
 
+
+        //PAKAGE CONSOLE EJECUTAR para agregar campos al register del usuario
+        //Enable-Migrations -ContextTypeName VirtualCar.Models.ApplicationDbContext
+        //add-migration nombre
+        //update-database
+
     }
 }

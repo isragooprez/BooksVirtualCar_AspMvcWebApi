@@ -27,7 +27,7 @@ namespace VirtualCar
         public string Telefono { get; set; }
         public string DNI { get; set; }
         public string Email { get; set; }
-        public byte[] Esuario { get; set; }
+        public string Esuario { get; set; }
         public string Clave { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

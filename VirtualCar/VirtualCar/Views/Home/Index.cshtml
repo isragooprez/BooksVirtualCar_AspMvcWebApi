@@ -9,7 +9,12 @@
 
 <p>
     @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-warning" })
+
 </p>
+
+
+
+
 
 
 
@@ -18,6 +23,7 @@
         <a href="#"><h4>Enthecwear - <span>4449 items</span> </h4></a>
         <ul class="w_nav">
             <li>Sort : </li>
+            <li>@ViewBag.CantBooks</li>(@ViewBag.Total)
             <li><a class="active" href="#">popular</a></li> |
             <li><a href="#">new </a></li> |
             <li><a href="#">discount</a></li> |
@@ -41,9 +47,9 @@
 
                     <a href="details.html">
                         <img src="~/Content/images/@(item.Foto)" style="width:200px;height:250px;">
-                        
+
                     </a>
-                   
+
 
                     <h4><a href="details.html"> @Html.DisplayFor(modelItem => item.Nombre)Duis autem</a></h4>
                     <tr>

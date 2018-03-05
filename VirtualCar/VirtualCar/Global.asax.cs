@@ -9,6 +9,7 @@ using VirtualCar.Models;
 using VirtualCar.Models.ModelsBinder;
 using System.Web.Http;
 using System.Net.Http.Formatting;
+using System.Net.Http.Headers;
 
 namespace VirtualCar
 {
@@ -16,19 +17,21 @@ namespace VirtualCar
     {
         protected void Application_Start()
         {
+            /*** Configuracion de JSON ***/
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/json"));
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            /***Configuracion Router API***/
+            GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            //Using necesario para el routin del api 
-            GlobalConfiguration.Configure(WebApiConfig.Register);
-            //ModelBinders para  el vitrtualCar en Session 
+            /***Configuracion de Bundle o contendor Carrito de compras en Sesion  ***/
             ModelBinders.Binders.Add(typeof(VirtualCarModels), new VirtualCarModelBinder());
-            //Archivos JSon
+            /*** Configuracion de JSON ***/
             GlobalConfiguration.Configuration.Formatters.Clear();
             GlobalConfiguration.Configuration.Formatters.Add(new JsonMediaTypeFormatter());
-
-
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Serialize;
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
         }
     }
 }

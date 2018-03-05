@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using VirtualCar;
+using Microsoft.AspNet.Identity;
+
 
 namespace VirtualCar.Controllers.FrontEndVirtualCar
 {
@@ -19,8 +21,17 @@ namespace VirtualCar.Controllers.FrontEndVirtualCar
          [Authorize(Users = "isragoo.prez@gmail.com")]
         public ActionResult Index()
         {
+
+           
             var pedidoes = db.Pedidoes.Include(p => p.Cliente);
-            return View(pedidoes.ToList());
+            if (User.Identity.GetUserName().Equals("isragoo.prez@gmail.com"))
+            {
+                return View(pedidoes.ToList());
+                
+
+            }
+            return RedirectToAction("AddCar", "VirtulCar");
+           
         }
 
         // GET: Pedidos/Details/5

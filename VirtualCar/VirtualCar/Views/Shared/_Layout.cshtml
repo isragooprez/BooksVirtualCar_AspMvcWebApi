@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html class="no-js before-run" lang="en">
 <head>
 
@@ -52,6 +53,7 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body class="dashboard">
+
     <!--[if lt IE 8]>
           <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
       <![endif]-->
@@ -567,29 +569,22 @@
                             {
                                 <a href="javascript:void(0)" data-slug="dashboard">
                                     <i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
-                                    <span class="site-menu-title">Virtual Books Car</span>
+                                    <span class="site-menu-title">CPANEL</span>
                                     <div class="site-menu-badge">
-                                        <span class="badge badge-success">2</span>
+                                        <span class="badge badge-success">@ViewBag.CantBooks ( @ViewBag.Total )</span>
                                     </div>
                                 </a>
                             }
                             else { 
                             <a href="javascript:void(0)" data-slug="dashboard">
                                 <i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
-                                <span class="site-menu-title">CPANEL</span>
+                                <span class="site-menu-title">Virtual Books Car</span>
                                 <div class="site-menu-badge">
-                                    <span class="badge badge-success">2</span>
+                                    <span class="badge badge-success">@ViewBag.CantBooks (@ViewBag.Total)</span>
                                 </div>
                             </a>
                             }
 
-                            <a href="javascript:void(0)" data-slug="dashboard">
-                                <i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
-                                <span class="site-menu-title">Virtual Books Car</span>
-                                <div class="site-menu-badge">
-                                    <span class="badge badge-success">2</span>
-                                </div>
-                            </a>
                             <ul class="site-menu-sub">
                                 <li class="site-menu-item active">
                                     <a class="animsition-link" href="@Url.Action("Index", "Home")" data-slug="dashboard-v1">
@@ -939,7 +934,7 @@
             <a href="javascript: void(0);" data-placement="top" data-toggle="tooltip" data-original-title="Lock">
                 <span class="icon wb-eye-close" aria-hidden="true"></span>
             </a>
-            <a href="javascript: void(0);" data-placement="top" data-toggle="tooltip" data-original-title="Logout">
+            <a href="javascript:document.getElementById('logoutForm').submit()" data-placement="top" data-toggle="tooltip" data-original-title="Logout">
                 <span class="icon wb-power" aria-hidden="true"></span>
             </a>
         </div>

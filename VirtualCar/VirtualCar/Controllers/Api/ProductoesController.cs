@@ -10,7 +10,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using VirtualCar;
 
-namespace VirtualCar.Controllers
+namespace VirtualCar.Controllers.Api
 {
     public class ProductoesController : ApiController
     {

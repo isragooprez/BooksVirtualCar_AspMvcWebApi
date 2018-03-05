@@ -201,18 +201,6 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="AspNetRole.cs">
-      <DependentUpon>ModelVirtualCarAspNet.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AspNetUser.cs">
-      <DependentUpon>ModelVirtualCarAspNet.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AspNetUserClaim.cs">
-      <DependentUpon>ModelVirtualCarAspNet.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AspNetUserLogin.cs">
-      <DependentUpon>ModelVirtualCarAspNet.tt</DependentUpon>
-    </Compile>
     <Compile Include="Categoria.cs">
       <DependentUpon>ModelEntityVirtualCar.tt</DependentUpon>
     </Compile>
@@ -224,21 +212,28 @@
     <Compile Include="Controllers\Api\ClientesController.cs" />
     <Compile Include="Controllers\Api\DetallePedidoesController.cs" />
     <Compile Include="Controllers\Api\PedidoesController.cs" />
+    <Compile Include="Controllers\Api\ProductoesController.cs" />
+    <Compile Include="Controllers\FrontEndVirtualCar\ClientesController.cs" />
     <Compile Include="Controllers\FrontEndVirtualCar\PedidosController.cs" />
     <Compile Include="Controllers\FrontEndVirtualCar\Utils.cs" />
     <Compile Include="Controllers\FrontEndVirtualCar\VirtualCarController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\Api\ProductoesController.cs" />
-    <Compile Include="C__MigrationHistory.cs">
-      <DependentUpon>ModelVirtualCarAspNet.tt</DependentUpon>
-    </Compile>
     <Compile Include="DetallePedido.cs">
       <DependentUpon>ModelEntityVirtualCar.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802220149296_InitialCreate.cs" />
+    <Compile Include="Migrations\201802220149296_InitialCreate.Designer.cs">
+      <DependentUpon>201802220149296_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803050023193_Campos.cs" />
+    <Compile Include="Migrations\201803050023193_Campos.Designer.cs">
+      <DependentUpon>201803050023193_Campos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelEntityVirtualCar.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -260,21 +255,6 @@
     <Compile Include="Models\ModelsBinder\VirtualCarModelBinder.cs" />
     <Compile Include="Models\Persona.cs" />
     <Compile Include="Models\VirtualCarModels.cs" />
-    <Compile Include="ModelVirtualCarAspNet.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelVirtualCarAspNet.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelVirtualCarAspNet.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelVirtualCarAspNet.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelVirtualCarAspNet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelVirtualCarAspNet.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Pedido.cs">
       <DependentUpon>ModelEntityVirtualCar.tt</DependentUpon>
     </Compile>
@@ -2484,16 +2464,6 @@
       <DependentUpon>ModelEntityVirtualCar.edmx</DependentUpon>
       <LastGenOutput>ModelEntityVirtualCar.cs</LastGenOutput>
     </Content>
-    <Content Include="ModelVirtualCarAspNet.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelVirtualCarAspNet.edmx</DependentUpon>
-      <LastGenOutput>ModelVirtualCarAspNet.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="ModelVirtualCarAspNet.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelVirtualCarAspNet.edmx</DependentUpon>
-      <LastGenOutput>ModelVirtualCarAspNet.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="maps\africa.json" />
@@ -2509,13 +2479,6 @@
     </EntityDeploy>
     <Content Include="ModelEntityVirtualCar.edmx.diagram">
       <DependentUpon>ModelEntityVirtualCar.edmx</DependentUpon>
-    </Content>
-    <EntityDeploy Include="ModelVirtualCarAspNet.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelVirtualCarAspNet.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="ModelVirtualCarAspNet.edmx.diagram">
-      <DependentUpon>ModelVirtualCarAspNet.edmx</DependentUpon>
     </Content>
     <Content Include="Content\images\.DS_Store" />
     <Content Include="Areas\HelpPage\Views\web.config" />
@@ -3130,6 +3093,12 @@
     <Content Include="src\vendor\typeahead-js\typeahead.less" />
     <Content Include="src\vendor\webui-popover\webui-popover.less" />
     <Content Include="src\vendor\x-editable\x-editable.less" />
+    <Content Include="Views\VirtualCar\Delete.cshtml" />
+    <Content Include="Views\Clientes\Create.cshtml" />
+    <Content Include="Views\Clientes\Delete.cshtml" />
+    <Content Include="Views\Clientes\Details.cshtml" />
+    <Content Include="Views\Clientes\Edit.cshtml" />
+    <Content Include="Views\Clientes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\DB\" />
@@ -3140,6 +3109,14 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201802220149296_InitialCreate.resx">
+      <DependentUpon>201802220149296_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803050023193_Campos.resx">
+      <DependentUpon>201803050023193_Campos.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -79,6 +79,22 @@ namespace VirtualCar.Models
         [Display(Name = "Confirmar contraseña")]
         [Compare("Password", ErrorMessage = "La contraseña y la contraseña de confirmación no coinciden.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string Nombres { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string Apellidos { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string Direccion { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string Telefono { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string DNI { get; set; }
     }
 
     public class ResetPasswordViewModel

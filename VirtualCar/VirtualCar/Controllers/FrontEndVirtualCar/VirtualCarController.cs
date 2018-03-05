@@ -27,6 +27,7 @@ namespace VirtualCar.Controllers.FrontEndVirtualCar
         private int counterProd = 0;
 
 
+
         Pedido pedido = new Pedido()
         {
             id_cli = currentUser,
@@ -39,11 +40,15 @@ namespace VirtualCar.Controllers.FrontEndVirtualCar
         DetallePedido productoPedido = new DetallePedido();
 
 
-        dynamic carVirtul = new System.Dynamic.ExpandoObject();
+        dynamic carVirtulMultiModel = new System.Dynamic.ExpandoObject();
+
+
+
         public ActionResult AddCar(int? id, VirtualCarModels _virtualCar)
         {
             double _igv_generado = 0;
             ViewBag.Message = "No existen libro agregados.";
+
 
             if (id > 0)
             {
@@ -101,7 +106,8 @@ namespace VirtualCar.Controllers.FrontEndVirtualCar
                 }
                 else
                 {
-                    return RedirectToAction("Index", "Home");
+                    carVirtulMultiModel.CantidadProductos = _virtualCar.Count();
+                    return RedirectToAction("Index", "Home", _virtualCar);
                 }
             }
             ViewBag.counterProd = counterProd.ToString();
@@ -131,29 +137,57 @@ namespace VirtualCar.Controllers.FrontEndVirtualCar
                 factura.id_pro = item.Id;
                 factura.Cantidad = item.Stock;
                 factura.Descuento = ((item.Precio * 5) / 100);
-                factura.Precio_venta = item.Precio * factura.Cantidad-factura.Descuento;
+                factura.Precio_venta = item.Precio * factura.Cantidad - factura.Descuento;
                 factura.Importe = item.Stock * item.Precio;
                 pedido.Subtotal += item.Precio - factura.Descuento;
                 pedido.IGV += (pedido.Subtotal * 12) / 100;
-                pedido.Total += pedido.Subtotal+pedido.IGV;
+                pedido.Total += pedido.Subtotal + pedido.IGV;
                 factura.Pedido = pedido;
 
                 //Metod o Alctulizacion Parcial
                 var bookProdEdit = (from p in db.Productoes where p.Id == item.Id select p).First();
                 bookProdEdit.Stock = bookProdEdit.Stock - 1;
                 db.Productoes.Attach(bookProdEdit);
-                db.Entry(bookProdEdit).Property(bp=>bp.Stock).IsModified=true;
+                db.Entry(bookProdEdit).Property(bp => bp.Stock).IsModified = true;
                 db.SaveChanges();
 
                 db.DetallePedidoes.Add(factura);
             }
 
             db.SaveChanges();
-            return RedirectToAction("Index", "Pedidos");
+            _virtualCar.Clear();
+
+         
+                return RedirectToAction("Index", "Pedidos");
+
+            
         }
+
+        //POST: Productos/Delete/5
+        [Authorize(Users = "isragoo.prez@gmail.com")]
+        public ActionResult Delete(int id, VirtualCarModels _virtualCar)
+        {
+
+            var isExisteProdVirtualCar = (from p in _virtualCar where p.Id == id select p).Any();
+            if (isExisteProdVirtualCar == true)
+            {
+                var prodVirtualCar = (from p in _virtualCar where p.Id == id select p).First();
+
+                foreach (Producto item in _virtualCar)
+                {
+                    if (prodVirtualCar.Id == item.Id)
+                        item.Stock--;
+                    if (prodVirtualCar.Stock == 0)
+                        _virtualCar.Remove(item);
+
+                }
+
+            }
+            return RedirectToAction("AddCar", _virtualCar);
+        }
+
+
+
+
     }
-
-
-
-
 }
