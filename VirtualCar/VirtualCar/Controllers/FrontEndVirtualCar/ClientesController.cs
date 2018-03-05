@@ -10,6 +10,7 @@ using VirtualCar;
 
 namespace VirtualCar.Controllers.FrontEndVirtualCar
 {
+    [Authorize(Users = "isragoo.prez@gmail.com")]
     public class ClientesController : Controller
     {
         private VirtualCarDBEntities db = new VirtualCarDBEntities();

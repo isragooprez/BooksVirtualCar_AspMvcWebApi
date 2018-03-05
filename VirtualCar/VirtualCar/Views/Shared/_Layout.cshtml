@@ -279,19 +279,7 @@
                 <!-- Navbar Toolbar Right -->
                 <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
                     @Html.Partial("_LoginPartial")
-                    <li class="dropdown">
-                        <ul class="list-group" role="presentation">
-                            <a class=" animsition-link" href="@Url.Action("About", "Home", new { area = "" }, Request.Url.Scheme)" data-slug="dashboard-v1">
-                                <i class="site-menu-icon " aria-hidden="true"></i>
-                                <span class="site-menu-title">About</span>
-                            </a>
-                            <a class=" animsition-link" href="@Url.Action("Contact", "Home", new { area = "" }, Request.Url.Scheme)" data-slug="dashboard-v1">
-                                <i class="site-menu-icon " aria-hidden="true"></i>
-                                <span class="site-menu-title">Contact</span>
-                            </a>
-                        </ul>
-                    </li>
-
+                 
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)" data-animation="slide-bottom"
                            aria-expanded="false" role="button">
@@ -727,20 +715,9 @@
                                         </li>
                                     </ul>
                                 </li>
-
-
-
-
-
-
-
-
-
-
-
                             </ul>
                         </li>
-                        <li class="site-menu-item has-sub">
+                        @*<li class="site-menu-item has-sub">
                             <a href="javascript:void(0)" data-slug="page">
                                 <i class="site-menu-icon wb-file" aria-hidden="true"></i>
                                 <span class="site-menu-title">Pages</span>
@@ -821,9 +798,9 @@
                                     </ul>
                                 </li>
                             </ul>
-                        </li>
-                        <li class="site-menu-category">Elements</li>
-                        <li class="site-menu-item has-sub">
+                        </li>*@
+                        <li class="site-menu-category">OTHER</li>
+                        @*<li class="site-menu-item has-sub">
                             <a href="javascript:void(0)" data-slug="uikit">
                                 <i class="site-menu-icon wb-bookmark" aria-hidden="true"></i>
                                 <span class="site-menu-title">Basic UI</span>
@@ -871,8 +848,8 @@
                                 </li>
 
                             </ul>
-                        </li>
-                        <li class="site-menu-item has-sub">
+                        </li>*@
+                        @*<li class="site-menu-item has-sub">
                             <a href="javascript:void(0)" data-slug="advanced">
                                 <i class="site-menu-icon wb-hammer" aria-hidden="true"></i>
                                 <span class="site-menu-title">Advanced UI</span>
@@ -893,15 +870,39 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
+                        </li>*@
 
-                        <li class="site-menu-category">Angular UI</li>
+
+                      @if (User.Identity.IsAuthenticated)
+                      {
                         <li class="site-menu-item">
-                            <a class="animsition-link" href="angular/#/angularui/bootstrap" data-slug="angular">
-                                <i class="site-menu-icon bd-angular" aria-hidden="true"></i>
-                                <span class="site-menu-title">Angular UI</span>
+                            <a class="animsition-link" href="@Url.Action("Index", "Clientes", new { area = "" }, Request.Url.Scheme)" data-slug="angular">
+                                <i class="site-menu-icon wb-bookmark" aria-hidden="true"></i>
+                                <span class="site-menu-title">Cleintes</span>
                                 <div class="site-menu-label">
-                                    <span class="label label-danger label-round">new</span>
+                                    <span class="label label-danger label-round">*</span>
+                                </div>
+                            </a>
+                        </li>
+                      }
+                        
+
+
+                        <li class="site-menu-item">
+                            <a class="animsition-link" href="@Url.Action("About", "Home", new { area = "" }, Request.Url.Scheme)" data-slug="angular">
+                                <i class="site-menu-icon wb-hammer" aria-hidden="true"></i>
+                                <span class="site-menu-title">About</span>
+                                <div class="site-menu-label">
+                                    <span class="label label-danger label-round">*</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="site-menu-item">
+                            <a class="animsition-link" href="@Url.Action("Contact", "Home", new { area = "" }, Request.Url.Scheme)" data-slug="angular">
+                                <i class="site-menu-icon bd-angular" aria-hidden="true"></i>
+                                <span class="site-menu-title">Contact</span>
+                                <div class="site-menu-label">
+                                    <span class="label label-danger label-round">*</span>
                                 </div>
                             </a>
                         </li>
